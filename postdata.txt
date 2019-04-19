@@ -1,0 +1,8 @@
+{
+    "topic": "all",
+    "types": "notice",
+    "topic_ids":["1"],
+    "msg": "测试消息",
+    "timeout": 2121325421,
+    "time": "1999-12-12"
+}
