@@ -23,7 +23,7 @@ upstream  wsserver  {
 
     2、http server作为消息发送入口
 
-    3.创建发送消息格式：json   
+    3.http创建发送消息格式：json   
                     {
                         "topic":uids/all ,             // 发送对象 uids:指定多个用户，all:发给所有在线用户
                         "topic_ids": ["1",2"...],      // 当topic为uids，topic_ids为uid列表。 
