@@ -6,13 +6,11 @@
 package rabbit
 
 import (
-	// "bytes"
 	"fmt"
 	"github.com/streadway/amqp"
 	"log"
 	"os"
 	"strings"
-	// "time"
 	"bytes"
 )
 
