@@ -9,11 +9,12 @@ import (
 	"time"
 )
 
-// type HandlerNotice *lib.HandlerNotice // 继承lib的HandlerNotice类型
+// type HandlerNotice *lib.HandlerNotice 
+// 继承lib的HandlerNotice类型
 // 用于 goroutine 间通信, 解耦queue
 type HandlerNotice struct {
 	Push	chan string 
-	Pop		chan string
+	Pop	chan string
 	Status	chan string
 	Queue 	QueueClass
 }
