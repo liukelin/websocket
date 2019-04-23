@@ -3,8 +3,8 @@ package redis_queue
 import (
 	"log"
 	"fmt"
-    "time"
-    "context"
+    	"time"
+    	"context"
 	"github.com/garyburd/redigo/redis"
 )
 /*
@@ -58,11 +58,11 @@ func (queue *Queue) NewQueue() {
 func (queue *Queue) Pub(message string) (error) {
 	
 	c := queue.Pool.Get()
-    defer c.Close()
-    _, err := redis.Int(c.Do("PUBLISH", queue.QueueConf.Qname, message))
-    if err != nil {
-        return fmt.Errorf("redis publish %s %s, err: %v", queue.QueueConf.Qname, message, err)
-    }
+    	defer c.Close()
+    	_, err := redis.Int(c.Do("PUBLISH", queue.QueueConf.Qname, message))
+    	if err != nil {
+        	return fmt.Errorf("redis publish %s %s, err: %v", queue.QueueConf.Qname, message, err)
+    	}
 	return nil
 }
 
@@ -77,15 +77,16 @@ func (queue *Queue) Sub() (error) {
         return err
     }
     done := make(chan error, 1)
+	
     // start a new goroutine to receive message
     go func() {
-		defer psc.Close()
+	defer psc.Close()
         for {
             switch msg := psc.Receive().(type) {
             case error:
                 done <- fmt.Errorf("redis pubsub receive err: %v", msg)
                 return
-			case redis.Message:
+	    case redis.Message:
                 if err := queue.Callback(string(msg.Data[:])); err != nil {
                     log.Printf("queue.Callback: %s", err)
                     // done <- err
