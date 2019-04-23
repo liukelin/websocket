@@ -18,7 +18,7 @@ const DEFAULT_TYPE = "notice"
 // 用于 goroutine 间通信, 解耦queue
 type HandlerNotice struct {
 	Push	chan string 
-	Pop		chan string
+	Pop	chan string
 	Queue 	*list_queue.Queue
 }
 
@@ -35,8 +35,8 @@ type SendMsgContent struct {
 	Topic		string 	 `json:"topic"`		  // 接收类型 uids/all
 	Topic_ids	[]string `json:"topic_ids"`	  // 接收用户
 	Types		string	 `json:"types"`		  // 订阅的消息类型, 目前规定一条消息的类型为固定，不能属于多个
-	Msg			string	 `json:"msg"`		  // 消息内容
-	Timeout		int		 `json:"timeout"`	  // 消息过期时间戳
+	Msg		string	 `json:"msg"`		  // 消息内容
+	Timeout		int	 `json:"timeout"`	  // 消息过期时间戳
 	Time		string	 `json:"time"`		  // 消息发送时间
 }
 
@@ -44,7 +44,7 @@ type SendMsgContent struct {
 // {"types":"notice", "msg":"消息内容", "time":"消息时间" }
 type EchoMsgContent struct {
 	Types		string	 `json:"types"`		// 目前规定一条消息的类型为固定，不能属于多个
-	Msg			string	 `json:"msg"`
+	Msg		string	 `json:"msg"`
 	Time		string	 `json:"time"`
 }
 
@@ -55,7 +55,7 @@ func QueuePushPop(notice *HandlerNotice){
 	go func(){
         select {
 		case msg := <-notice.Push: // 接收接口发送消息
-            log.Printf("push:%s \r\n", msg)
+            		log.Printf("push:%s \r\n", msg)
         }
     }()
 }
@@ -89,7 +89,7 @@ func SendToEchoMsgJson(msg *SendMsgContent) []byte {
 		Time:	msg.Time,
 	}
 	data, err := json.Marshal(echoMsg)
-    if err != nil {
+    	if err != nil {
 		log.Println("Json.Marshal failed:", err)
 		return nil
 	}
@@ -146,8 +146,7 @@ func CheckErr(err error, extra string) bool {
         if extra != "" {
             formatStr = extra + formatStr;
         }
-		// fmt.Fprintf(os.Stderr, formatStr, err.Error());
-		log.Println(formatStr, err.Error())
+	log.Println(formatStr, err.Error())
         return true;
     }
     return false;
