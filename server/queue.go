@@ -1,7 +1,6 @@
 package server
 /**
 	作为消息中间存储层
-
 	单机环境：使用本地 list结构即可
   	高可用下：因为各个节点需要数据同步，所以使用pub/sub结构
 **/
@@ -37,9 +36,7 @@ func InitQueue(params map[string]string) (QueueClass) {
 	var queue QueueClass
 	if params["queue"] == "redis" { // 
 		queue = &redis_queue.Queue{
-			QueueConf: &redis_queue.QueueConf{
-
-						},
+			QueueConf: 	&redis_queue.QueueConf{},
 			Pool:		nil,
 			Callback:	Callback,
 		}
