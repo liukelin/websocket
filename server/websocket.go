@@ -52,8 +52,6 @@ func CreateWebSocketHandler(notice *HandlerNotice) (http.Handler) {
     ws.ListeningMsg()
 
     ht := websocket.Handler(ws.wsHandler)
-    
-
     // var w http.ResponseWriter
     // var r *http.Request
     // w.Header().Set("Access-Control-Allow-Origin", "*") 
