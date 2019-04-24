@@ -20,12 +20,12 @@ var lock sync.Mutex
 
 //队列类实现方法
 type QueueClass interface {
-	// 连接
-	NewQueue()
-	// publish
-	Pub(string) (error)
-	// Subscribe
-	Sub() (error)
+    // 连接
+    NewQueue()
+    // publish
+    Pub(string) (error)
+    // Subscribe
+    Sub() (error)
 }
 
 type Queue struct {
