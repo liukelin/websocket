@@ -118,7 +118,7 @@ func ClientUrlParamsParse(url string) (*ClientParams) {
 
 	defer func(){
 		uri = nil
-    }()
+    	}()
 
 	if _, ok := uri["d"]; !ok {
 		log.Println("url d null.")
@@ -182,7 +182,6 @@ func GetAllowUids(cliens []*ClientParams, msg *SendMsgContent) ([]string){
 			if InArray(msg.Topic_ids, v.Uid) {
 				repeat[v.Uid] = 0
 			}
-
 		} else if msg.Topic == TOPIC_ALL { // 全部群发
 			repeat[v.Uid] = 0
 		} else {
