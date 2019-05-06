@@ -106,12 +106,6 @@ func (ws *Ws) wsHandler(conn *websocket.Conn) {
 
     // 监听客户端发送的消息
     for {
-
-        // if err = websocket.Message.Receive(ws, &reply); err != nil {
-        //     fmt.Println("Can't receive")
-        //     break
-        // }
-
         // 获取客户端发送的消息 ，此函数为阻塞函数
         readLen, err := conn.Read(request)
         if lib.CheckErr(err, "Client connection close: "+conn.LocalAddr().String()) {
@@ -119,7 +113,6 @@ func (ws *Ws) wsHandler(conn *websocket.Conn) {
         }
 
         // 获取消息类型
-
         if readLen == 0 {
             // socket被关闭
             log.Println("Client connection close: ",conn.LocalAddr().String())
@@ -128,7 +121,6 @@ func (ws *Ws) wsHandler(conn *websocket.Conn) {
             fmt.Println(string(conn.PayloadType))
             //输出接收到的信息
             fmt.Println(string(request[:readLen]))
-
             time.Sleep(time.Second)
             //发送
             conn.PayloadType = byte(TextMessage)
